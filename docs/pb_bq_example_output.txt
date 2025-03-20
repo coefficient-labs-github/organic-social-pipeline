@@ -1,0 +1,73 @@
+(base) tomyoungblood@Toms-MacBook-Pro scripts % python pb_bq.py
+-NEW ROWS TO PUSH-
+     sourceUserId                      name  ...  platform companyId
+168    1416502549      William Webster, CPA  ...  LinkedIn       NaN
+169    1416502549               Pratham Oza  ...  LinkedIn       NaN
+170    1416502549             Chandler Barr  ...  LinkedIn       NaN
+171    1416502549           Warren Shaeffer  ...  LinkedIn       NaN
+172    1416502549            Richard Raddon  ...  LinkedIn       NaN
+173    1416502549          Kostia Eidelnant  ...  LinkedIn       NaN
+174    1416502549                  Nick Kim  ...  LinkedIn       NaN
+175    1416502549               Mark Mullen  ...  LinkedIn       NaN
+176    1416502549            Sebastian Buck  ...  LinkedIn       NaN
+177    1416502549                  Bob Wall  ...  LinkedIn       NaN
+178    1416502549               Anna Barber  ...  LinkedIn       NaN
+179    1416502549              Jim Andelman  ...  LinkedIn       NaN
+180    1416502549              Mayu Kataoka  ...  LinkedIn       NaN
+181    1416502549                 Syed Noor  ...  LinkedIn       NaN
+182    1416502549            Ryan Schonfeld  ...  LinkedIn       NaN
+183    1416502549               Jon Lipnick  ...  LinkedIn       NaN
+184    1416502549         Nitu Gulati-Pauly  ...  LinkedIn       NaN
+185    1416502549               Mark Suster  ...  LinkedIn       NaN
+186    1416502549  Ambassador Allana Folger  ...  LinkedIn       NaN
+187    1416502549            Siddharth Jain  ...  LinkedIn       NaN
+188    1416502549             Lindsay Meyer  ...  LinkedIn       NaN
+189    1416502549               Alex Strand  ...  LinkedIn       NaN
+190    1416502549                   Kana L.  ...  LinkedIn       NaN
+191    1416502549         Jeff James Martin  ...  LinkedIn       NaN
+192    1416502549               Eric Litman  ...  LinkedIn       NaN
+193    1416502549          Fritz Frauendorf  ...  LinkedIn       NaN
+194    1416502549               Cruz Gamboa  ...  LinkedIn       NaN
+195    1416502549                 Ike Kavas  ...  LinkedIn       NaN
+196    1416502549     Evan Boswell Hamilton  ...  LinkedIn       NaN
+197    1416502549                Rich Cohen  ...  LinkedIn       NaN
+198    1416502549       Gunjan Mansharamani  ...  LinkedIn       NaN
+199    1416502549  Larry Koeppel, CFP®, MBA  ...  LinkedIn       NaN
+200    1416502549               Kirin Kalia  ...  LinkedIn       NaN
+201    1416502549             Alexis Farahi  ...  LinkedIn       NaN
+202    1416502549              Kobie Fuller  ...  LinkedIn       NaN
+203    1416502549                Josh Lumer  ...  LinkedIn       NaN
+204    1416502549            Brandon Zamora  ...  LinkedIn       NaN
+205    1416502549             Laurent Grill  ...  LinkedIn       NaN
+206    1416502549             Deb Goldstein  ...  LinkedIn       NaN
+207    1416502549                     G Gan  ...  LinkedIn       NaN
+208    1416502549           Nova Richardson  ...  LinkedIn       NaN
+209    1416502549            Derek Andersen  ...  LinkedIn       NaN
+210    1416502549               Mike Porath  ...  LinkedIn       NaN
+211    1416502549          Michelle Hopfner  ...  LinkedIn       NaN
+213    1416502549               Sachin Syal  ...  LinkedIn       NaN
+214    1416502549              Nancy Davila  ...  LinkedIn       NaN
+215    1416502549      Laurie Chesler-Clark  ...  LinkedIn       NaN
+216    1416502549                 Josh Roth  ...  LinkedIn       NaN
+217    1416502549   Daniel Carpenter Newman  ...  LinkedIn       NaN
+218    1416502549                    Wes N.  ...  LinkedIn       NaN
+219    1416502549          Marie Elena Rigo  ...  LinkedIn       NaN
+220    1416502549             Katie McMahon  ...  LinkedIn       NaN
+221    1416502549              hiam chehade  ...  LinkedIn       NaN
+222    1416502549               Mike Pihosh  ...  LinkedIn       NaN
+223    1416502549                Deanna Lyn  ...  LinkedIn       NaN
+224    1416502549        Chase Feiger, M.D.  ...  LinkedIn       NaN
+
+[56 rows x 10 columns]
+            companyId        companyName                                         companyUrl   followersCount
+212  collectivegenius  Collective Genius  https://www.linkedin.com/company/collective-ge...  1,059 followers
+                                               postUrl  ...             postName
+171  https://www.linkedin.com/posts/sean-goldfaden_...  ...  Upfront Summit 2025
+212  https://www.linkedin.com/posts/marksuster_upfr...  ...   Mark Suster Repost
+
+[2 rows x 4 columns]
+
+
+Loaded 56 rows into contacts.
+Loaded 1 rows into companies.
+Loaded 2 rows into posts.

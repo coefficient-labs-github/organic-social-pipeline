@@ -1,0 +1,60 @@
+(base) tomyoungblood@Toms-MacBook-Pro scripts % python bq_hs.py
+Total Contacts Retrieved: 179
+Number of leads to push: 57
+Successfully pushed: Amanda Eakin
+Successfully pushed: Kirin Kalia
+Successfully pushed: Alexis Farahi
+Successfully pushed: Nitu Gulati-Pauly
+Successfully pushed: Siddharth Jain
+Successfully pushed: Fritz Frauendorf
+Successfully pushed: Cruz Gamboa
+Successfully pushed: Josh Roth
+Successfully pushed: Wes N.
+Successfully pushed: Katie McMahon
+Successfully pushed: William Webster, CPA
+Successfully pushed: Nick Kim
+Successfully pushed: Mark Mullen
+Successfully pushed: Sebastian Buck
+Successfully pushed: Bob Wall
+Successfully pushed: Anna Barber
+Successfully pushed: Jim Andelman
+Successfully pushed: Lindsay Meyer
+Successfully pushed: Jeff James Martin
+Successfully pushed: Eric Litman
+Successfully pushed: Evan Boswell Hamilton
+Successfully pushed: Josh Lumer
+Successfully pushed: Laurent Grill
+Successfully pushed: Deb Goldstein
+Successfully pushed: Daniel Carpenter Newman
+Successfully pushed: Pratham Oza
+Successfully pushed: Chandler Barr
+Successfully pushed: Richard Raddon
+Successfully pushed: Kostia Eidelnant
+Successfully pushed: Mayu Kataoka
+Successfully pushed: Syed Noor
+Successfully pushed: Jon Lipnick
+Successfully pushed: Mark Suster
+Successfully pushed: Ambassador Allana Folger
+Successfully pushed: Alex Strand
+Successfully pushed: Ike Kavas
+Successfully pushed: Rich Cohen
+Successfully pushed: Gunjan Mansharamani
+Successfully pushed: Larry Koeppel, CFP®, MBA
+Successfully pushed: Kobie Fuller
+Successfully pushed: Brandon Zamora
+Successfully pushed: G Gan
+Successfully pushed: Nova Richardson
+Successfully pushed: Derek Andersen
+Successfully pushed: Mike Porath
+Successfully pushed: Michelle Hopfner
+Successfully pushed: Sachin Syal
+Successfully pushed: Nancy Davila
+Successfully pushed: Marie Elena Rigo
+Successfully pushed: hiam chehade
+Successfully pushed: Mike Pihosh
+Successfully pushed: Chase Feiger, M.D.
+Successfully pushed: Warren Shaeffer
+Successfully pushed: Ryan Schonfeld
+Successfully pushed: Kana L.
+Successfully pushed: Laurie Chesler-Clark
+Successfully pushed: Deanna Lyn
