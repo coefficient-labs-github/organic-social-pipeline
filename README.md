@@ -23,7 +23,7 @@ This project is a **fully automated data pipeline** that scrapes LinkedIn post e
 - **Gspread**
 
 ## 📊 BigQuery Schema
-![Pipeline Flowchart](media/organic_social_pipeline_flowchart.png)
+![BigQuery Schema](media/BQ_schema.png)
 
 ## 📂 Project Structure
 ```
