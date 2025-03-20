@@ -4,6 +4,7 @@
 This project is a **fully automated data pipeline** that scrapes LinkedIn post engagers, formats the data into a relational format, stores it in **BigQuery**, and pushes qualified leads into **HubSpot** for outreach. The pipeline has been modularized into separate Python scripts for better maintainability and scalability.
 
 ## 📊 Pipeline Architecture
+![Pipeline Flowchart](media/organic_social_pipeline_flowchart.png)
 - **Phantombuster API** → Scrapes LinkedIn post engagers.
 - **Python Script: pb_bq.py** → Pulls and preprocesses PhantomBuster data into realtional DB, sends to BigQuery.
 - **Google BigQuery** → Stores and processes raw lead data
@@ -21,28 +22,35 @@ This project is a **fully automated data pipeline** that scrapes LinkedIn post e
 - **Requests**
 - **Gspread**
 
+## 📊 BigQuery Schema
+![Pipeline Flowchart](media/organic_social_pipeline_flowchart.png)
+
 ## 📂 Project Structure
 ```
-📁 linkedin-hubspot-pipeline/
-│── 📁 scripts/               # Modular Python scripts
-│    ├── pb_bq.py             # Formats scraped data and sends it to BigQuery
-│    ├── bq_hs.py             # Formats BigQuery data and sends it to HubSpot
+📁 organic_social_pipelins
+│── 📁 scripts/ 
+│    ├── funcs.py                  # Helper functions for the ETL python scripts below
+│    ├── pb_bq.py                  # Pulls/formats data from PhantomBuster; sends data to BigQuery
+│    ├── bq_hs.py                  # Formats BigQuery data; sends data to HubSpot
 │
-│── 📁 config/             # Co Configs and API keys (excluded from Git)
+│── 📁 config/                     # Configs and API keys (excluded from Git); Soon to be sunsetted.
 │    ├── apollo_key.txt
 │    ├── hs_key.txt
 │    ├── pb_link.txt
 │    ├── phantombuster_key
 │    ├── sheets_key.json
-│    ├── skilled-tangent.json
+│    ├── bigquery.json
 │
 │
-│── 📁 docs/                   # Documentation
-│    ├── hs_bq_example_output.txt
-│    ├── pb_bq_example_output.txt
+│── 📁 docs/                       # Documentation providing examples of runs
+│    ├── pb_bq_example_output.txt  # Example output: PhantomBuster -> BigQuery Pipeline
+│    ├── bq_hs_example_output.txt  # Example Output: BigQuery -> Hubspot Pipeline
 │
-│─.gitignore                 # Ignore sensitive files
-│─requirements.txt           # Python dependencies
+│── 📁 media/                      # Contains media (images and flowcharts for github_repo)
+│    ├── ...
+│
+│─ .gitignore                       
+│─ requirements.txt              
 ```
 
 ## ⚡ Quickstart
