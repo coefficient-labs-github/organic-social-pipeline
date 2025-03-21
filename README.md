@@ -57,6 +57,6 @@ Ensure that all required API keys are present in the `.env/` file.
 
 ### **3️⃣ Run the Full Pipeline**
 ```bash
-python scripts/pb_bq.py
-python scripts/bq_hs.py
+python etl_scripts/pb_bq.py
+python etl_scripts/bq_hs.py
 ```
