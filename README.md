@@ -60,7 +60,7 @@ pip install -r requirements.txt
 ```
 
 ### **2️⃣ Set Up API Keys**
-Ensure that all required API keys are present in the `config/` directory.
+Ensure that all required API keys are present in the `.env/` file.
 
 ### **3️⃣ Run the Full Pipeline**
 ```bash
