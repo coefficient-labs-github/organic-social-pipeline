@@ -28,19 +28,10 @@ This project is a **fully automated and scheduled data pipeline** that scrapes L
 ## 📂 Project Structure
 ```
 📁 organic_social_pipelins
-│── 📁 scripts/ 
+│── 📁 etl_scripts/ 
 │    ├── funcs.py                  # Helper functions for the ETL python scripts below
 │    ├── pb_bq.py                  # Pulls/formats data from PhantomBuster; sends data to BigQuery
 │    ├── bq_hs.py                  # Formats BigQuery data; sends data to HubSpot
-│
-│── 📁 config/                     # Configs and API keys (excluded from Git); Soon to be sunsetted.
-│    ├── apollo_key.txt
-│    ├── hs_key.txt
-│    ├── pb_link.txt
-│    ├── phantombuster_key
-│    ├── sheets_key.json
-│    ├── bigquery.json
-│
 │
 │── 📁 docs/                       # Documentation providing examples of runs
 │    ├── pb_bq_example_output.txt  # Example output: PhantomBuster -> BigQuery Pipeline
@@ -50,7 +41,9 @@ This project is a **fully automated and scheduled data pipeline** that scrapes L
 │    ├── ...
 │
 │─ .gitignore                       
-│─ requirements.txt              
+│─ requirements.txt
+│─ .env
+│─ README.md       
 ```
 
 ## ⚡ Quickstart
