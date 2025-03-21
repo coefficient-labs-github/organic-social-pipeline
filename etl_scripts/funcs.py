@@ -9,8 +9,7 @@ class PBBQDataProcessing:
     def process_gspred(gspread_credentials, raw):
         """Requests data from a Google Sheet, performs data processing, and returns a DataFrame."""
         # Get LinkedIn postIDs and names
-        credentials_file = '../config/sheets_key.json'
-        gc = gspread.service_account(filename=credentials_file)
+        gc = gspread.service_account_from_dict(gspread_credentials)
         links = pd.DataFrame(gc.open("Organic Social Dashboard").worksheet('LI Links').get_all_values(), columns=['link', 'post', 'id'])
 
         # Merge raw and links to get postId and postName variable
@@ -54,12 +53,13 @@ class PBBQDataProcessing:
 
         return li_posts
     
-    def subset_data(li_companies, li_contacts, li_posts):
+    def subset_data(li_companies, li_contacts, li_posts, bq_dataset, bq_credentials):
         """Subsets dataframes across platforms, returns new contacts, companies, and posts."""
         # Query bigquery for current tables
         bq_tables = {}
         for t in ["contacts", "companies", "posts"]:
-            bq_tables[t] = BQ.bq_query_table("../config/skilled-tangent-448417-n8-35dde3932757.json", f"SELECT * FROM `skilled-tangent-448417-n8.pb_dataset.{t}`;")
+            query = f"SELECT * FROM `{bq_dataset}.{t}`;"
+            bq_tables[t] = BQ.bq_query_table(bq_credentials, query)
 
         # Stack dataframes across platforms
         contacts = li_contacts
@@ -80,9 +80,7 @@ class PB:
 
 class HS:
     """Helper functions for HubSpot: Importing and Exporting Contacts."""
-    def hs_prepare_request(url, api_key_path):
-        # HubSpot Private App Token
-        api_key = open(api_key_path, 'r').read().strip()
+    def hs_prepare_request(url, api_key):
 
         # Headers for authentication
         headers = {
@@ -92,7 +90,7 @@ class HS:
 
         return api_key, headers, url
 
-    def hs_fetch_list_contacts(api_key, headers, url, list_id):
+    def hs_fetch_list_contacts(headers, url, list_id):
         contacts = []
         params = {
             "count": 100
@@ -197,17 +195,16 @@ class HS:
             print("No new leads pushed")
 
 class BQ:
-    def bq_query_table(api_key_path, query):
+    def bq_query_table(credentials, query):
         """Queries a BigQuery table and returns a pandas DataFrame."""
-        client = bigquery.Client.from_service_account_json(api_key_path)
+        client = bigquery.Client.from_service_account_info(credentials)
         query_job = client.query(query)
         results = query_job.result()
         return results.to_dataframe()
     
-    def bq_push_tables(api_key_path, dataset_id, **kwargs):
+    def bq_push_tables(credentials, dataset_id, **kwargs):
         """Pushes all tables from a DataFrame to BigQuery."""
-        # Initialize BigQuery client
-        client = bigquery.Client.from_service_account_json(api_key_path)
+        client = bigquery.Client.from_service_account_info(credentials)
 
         # Define dataset and table
         dataset_id = dataset_id

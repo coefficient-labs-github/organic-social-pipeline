@@ -2,8 +2,17 @@ import requests
 import pandas as pd
 from google.cloud import bigquery
 import funcs
+import os
+from dotenv import load_dotenv
+import json
 
 def main():
+    # Get environment variables
+    load_dotenv()
+    hs_key = os.environ["HUBSPOT_API_KEY"]
+    bq_credentials = json.loads(os.environ["BIGQUERY_CREDENTIALS"])
+    bq_dataset = os.environ["BIGQUERY_DATASET"]
+
     # Query BigQuery for contact information and Post Names to send to Hubspot
     query = """
             SELECT
@@ -18,15 +27,15 @@ def main():
             """
 
     # Save BigQuery Leads, dropping duplicates if exist
-    bq_leads = funcs.BQ.bq_query_table("../config/skilled-tangent-448417-n8-35dde3932757.json", query).drop_duplicates(subset="profileLink")
+    bq_leads = funcs.BQ.bq_query_table(bq_credentials, query).drop_duplicates(subset="profileLink")
 
     # HubSpot API URL for fetching all contacts in a list
     list_id = 246
     url = f"https://api.hubapi.com/contacts/v1/lists/{list_id}/contacts/all?property=hs_linkedin_url"
-    api_key, headers, url = funcs.HS.hs_prepare_request(url, "../config/hs_key.txt")
+    api_key, headers, url = funcs.HS.hs_prepare_request(url, hs_key)
 
     # Fetch all contacts from the HubSpot list
-    all_contacts = funcs.HS.hs_fetch_list_contacts(api_key, headers, url, list_id)
+    all_contacts = funcs.HS.hs_fetch_list_contacts(headers, url, list_id)
     print(f"Total Contacts Retrieved: {len(all_contacts)}")
 
     # Subset of contacts that are in BQ and not HS (new leads)

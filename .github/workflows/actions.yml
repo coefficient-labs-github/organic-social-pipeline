@@ -1,25 +1,34 @@
-name: run all
-
+name: Run ETL Pipeline
 on:
-  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight
+  workflow_dispatch:      
 
 jobs:
-  build:
+  run-etl:
     runs-on: ubuntu-latest
+    env:
+      PHANTOMBUSTER_LINK: ${{ secrets.PHANTOMBUSTER_LINK }}
+      GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}
+      BIGQUERY_CREDENTIALS: ${{ secrets.BIGQUERY_CREDENTIALS }}
+      BIGQUERY_DATASET: ${{ secrets.BIGQUERY_DATASET }}
+      HUBSPOT_API_KEY: ${{ secrets.HUBSPOT_API_KEY }}
+
     steps:
-      - name: Checkout repo content
-        uses: actions/checkout@v2 # Checkout the repository
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.10'
-
+          python-version: '3.x'
+          
       - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Execute hs_st.py
-        env:
-          HUBSPOT_API_KEY: ${{ secrets.HUBSPOT_API_KEY }}
-          GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}
-        run: python scripts/actions.py
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Run Phantombuster to BigQuery ETL
+        run: python etl_scripts/pb_bq.py
+        
+      - name: Run BigQuery to HubSpot ETL
+        run: python etl_scripts/bq_hs.py

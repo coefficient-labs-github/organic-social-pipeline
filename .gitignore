@@ -45,3 +45,4 @@ Thumbs.db
 config/*.json
 config/*.txt
 *.log
+temp_storage
