@@ -1,7 +1,7 @@
 # LinkedIn to HubSpot Lead Generation Pipeline
 
 ## 🚀 Overview
-This project is a **fully automated data pipeline** that scrapes LinkedIn post engagers, formats the data into a relational format, stores it in **BigQuery**, and pushes qualified leads into **HubSpot** for outreach. The pipeline has been modularized into separate Python scripts for better maintainability and scalability.
+This project is a **fully automated and scheduled data pipeline** that scrapes LinkedIn post engagers, formats the data into a relational format, stores it in **BigQuery**, and pushes qualified leads into **HubSpot** for outreach. The pipeline has been modularized into separate Python scripts for better maintainability and scalability.
 
 ## 📊 Pipeline Architecture
 ![Pipeline Flowchart](media/organic_social_pipeline_flowchart.png)
