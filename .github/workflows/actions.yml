@@ -13,6 +13,7 @@ jobs:
       BIGQUERY_CREDENTIALS: ${{ secrets.BIGQUERY_CREDENTIALS }}
       BIGQUERY_DATASET: ${{ secrets.BIGQUERY_DATASET }}
       HUBSPOT_API_KEY: ${{ secrets.HUBSPOT_API_KEY }}
+      APOLLO_COMPANY_ENR_KEY: ${{ secrets.APOLLO_COMPANY_ENR_KEY }}
 
     steps:
       - uses: actions/checkout@v2
@@ -32,3 +33,6 @@ jobs:
         
       - name: Run BigQuery to HubSpot ETL
         run: python etl_scripts/bq_hs.py
+
+      - name: Run Apollo Company Enrichment
+        run: python etl_scripts/hs_ap_hs.py

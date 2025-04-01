@@ -1,3 +1,6 @@
+# Project specific
+temp_data
+
 # Python
 __pycache__/
 *.py[cod]

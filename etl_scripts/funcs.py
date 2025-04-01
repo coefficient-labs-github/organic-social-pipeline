@@ -3,6 +3,7 @@ import pandas as pd
 from google.cloud import bigquery
 from io import BytesIO
 import gspread
+import json
 
 class PBBQDataProcessing:
     """Helper functions for Data Processing: PhantomBuster to BigQuery Pipeline"""
@@ -90,7 +91,7 @@ class HS:
 
         return api_key, headers, url
 
-    def hs_fetch_list_contacts(headers, url, list_id):
+    def hs_fetch_list_contacts(headers, url):
         contacts = []
         params = {
             "count": 100
@@ -193,6 +194,62 @@ class HS:
 
         else:
             print("No new leads pushed")
+    
+    def hs_update_funding_details(api_key, funding_df):
+        """Pushes all funding details from a DataFrame to HubSpot."""
+        url_base = "https://api.hubapi.com/crm/v3/objects/contacts/"
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {api_key}"
+        }
+
+        # Check if there are leads to push
+        if not funding_df.empty:
+            for _, row in funding_df.iterrows():
+                contact_id = row.get("vid")
+
+                # Skip rows with missing contact IDs
+                if pd.isna(contact_id):
+                    print("Skipping row. Contact ID is missing.")
+                    continue
+
+                # Specify properties to update
+                properties = {}
+                company_name = row.get("company_name", "")
+                if company_name: 
+                    properties["company"] = str(company_name)
+
+                crunchbase_url = row.get("crunchbase_url", "In Crunchbase (URL not listed)")
+                properties["crunchbase_url"] = str(crunchbase_url)
+
+                total_funding = row.get("total_funding")
+                if pd.notna(total_funding): #Only add if the value is a number.
+                    properties["total_funding"] = str(total_funding)
+
+                latest_funding_stage = row.get("latest_funding_stage", "Venture backed (funding stage not listed)")
+                properties["latest_funding_stage"] = str(latest_funding_stage)
+
+                annual_revenue = row.get("annual_revenue", "Venture Backed (annual rev not listed)")
+                properties["annualrevenue"] = str(annual_revenue)
+
+                state = row.get("state", "")
+                properties["state"] = str(state)
+
+                # Construct the payload in the correct format
+                payload = json.dumps({"properties": properties})
+
+                # Try to update each contact
+                contact_url = f"{url_base}{contact_id}"
+                try:
+                    response = requests.patch(contact_url, headers=headers, data=payload)
+                    response.raise_for_status()
+
+                    print(f"Successfully updated contact ID: {contact_id}")
+
+                except requests.exceptions.RequestException as e:
+                    print(f"Failed to update contact ID: {contact_id}, Error: {e}, Response: {response.text if 'response' in locals() else 'No Response'}")
+        else:
+            print("No contacts to update.")
 
 class BQ:
     def bq_query_table(credentials, query):
@@ -227,3 +284,18 @@ class BQ:
             print(f"Loaded {job.output_rows} rows into {table_name}.")
 
         return None
+    
+class AP:
+    def apl_person_enrich(domain_url, api_key):
+        url = f"https://api.apollo.io/api/v1/organizations/enrich?domain={domain_url}"
+
+        headers = {
+            "accept": "application/json",
+            "Cache-Control": "no-cache",
+            "Content-Type": "application/json",
+            "x-api-key": api_key
+        }
+
+        response = requests.post(url, headers=headers)
+
+        return response.text

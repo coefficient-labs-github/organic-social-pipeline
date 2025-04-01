@@ -35,7 +35,7 @@ def main():
     api_key, headers, url = funcs.HS.hs_prepare_request(url, hs_key)
 
     # Fetch all contacts from the HubSpot list
-    all_contacts = funcs.HS.hs_fetch_list_contacts(headers, url, list_id)
+    all_contacts = funcs.HS.hs_fetch_list_contacts(headers, url)
     print(f"Total Contacts Retrieved: {len(all_contacts)}")
 
     # Subset of contacts that are in BQ and not HS (new leads)
